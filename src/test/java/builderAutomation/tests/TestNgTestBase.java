@@ -1,4 +1,4 @@
-package builderAutomation;
+package builderAutomation.tests;
 
 import java.io.IOException;
 import java.util.Set;

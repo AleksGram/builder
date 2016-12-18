@@ -1,24 +1,16 @@
-package builderAutomation;
+package builderAutomation.tests;
 
-import org.openqa.selenium.support.ui.ExpectedConditions;
+import builderAutomation.tests.TestNgTestBase;
 import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 
 public class TestOffer extends TestNgTestBase {
 
-    @BeforeMethod
-    public void prepareTest() throws InterruptedException {
-      //  prepareToTest("USA", "auto", "mfs");
-
-    }
-
     @Test
     public void testMultipleConditions() throws InterruptedException {
-        urlLink=driver.getCurrentUrl();
+        urlLink = driver.getCurrentUrl();
         System.out.println(urlLink);
         pages.getAutoFields().getInsuranceCompany().click();
         pages.getFields().addAction("updateVisability");
@@ -39,19 +31,11 @@ public class TestOffer extends TestNgTestBase {
 
         pages.getOfferAutoFields().fillTheSelectField(pages.getOfferAutoFields().getInsuranceCompany(), 1);
         Assert.assertTrue(pages.getOfferAutoFields().getInsuranceSince().isEnabled());
+    }
 
-       /* wait.until(ExpectedConditions.visibilityOf(pages.getOfferAutoFields().getInsuranceSince()));
-
-
-        Assert.assertTrue(pages.getOfferAutoFields().getInsuranceSince().isDisplayed());
-        pages.getOfferAutoFields().fillPage();
-        Assert.assertTrue(pages.getOfferAutoFields().getHeader().getText().contains("BEVERLY HILLS"));
-        Assert.assertTrue(pages.getOfferAutoFields().getInsuranceSince().isEnabled());*/
-        }
-
-        @Test
-                public void testJumpToPage() throws InterruptedException {
-            urlLink=driver.getCurrentUrl();
+    @Test
+    public void testJumpToPage() throws InterruptedException {
+        urlLink = driver.getCurrentUrl();
         pages.getAutoFields().getCreditRating().click();
         pages.getFields().addAction("skipToAnotherPage");
         pages.getFields().backTofields();
@@ -59,7 +43,7 @@ public class TestOffer extends TestNgTestBase {
         pages.getFormSettingsPage().openOfferInNewTab();
         pages.getOfferAutoFields().fillPage();
         Assert.assertTrue(pages.getOfferAutoFields().getHeader().getText().contains("Great News"));
-            System.out.println(pages.getOfferAutoFields().getHeader().getText());
-        }
+        System.out.println(pages.getOfferAutoFields().getHeader().getText());
     }
+}
 
