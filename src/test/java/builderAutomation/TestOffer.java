@@ -16,7 +16,7 @@ public class TestOffer extends TestNgTestBase {
 
     }
 
-    @Test(priority = 1)
+    @Test
     public void testMultipleConditions() throws InterruptedException {
         urlLink=driver.getCurrentUrl();
         System.out.println(urlLink);
@@ -37,17 +37,20 @@ public class TestOffer extends TestNgTestBase {
         pages.getFormSettingsPage().saveOffer();
         pages.getFormSettingsPage().openOfferInNewTab();
 
-        wait.until(ExpectedConditions.visibilityOf(pages.getOfferAutoFields().getInsuranceSince()));
+        pages.getOfferAutoFields().fillTheSelectField(pages.getOfferAutoFields().getInsuranceCompany(), 1);
+        Assert.assertTrue(pages.getOfferAutoFields().getInsuranceSince().isEnabled());
+
+       /* wait.until(ExpectedConditions.visibilityOf(pages.getOfferAutoFields().getInsuranceSince()));
 
 
         Assert.assertTrue(pages.getOfferAutoFields().getInsuranceSince().isDisplayed());
         pages.getOfferAutoFields().fillPage();
         Assert.assertTrue(pages.getOfferAutoFields().getHeader().getText().contains("BEVERLY HILLS"));
-        Assert.assertTrue(pages.getOfferAutoFields().getInsuranceSince().isEnabled());
+        Assert.assertTrue(pages.getOfferAutoFields().getInsuranceSince().isEnabled());*/
         }
 
-        @Test(priority = 2)
-    public void testJumpToPage() throws InterruptedException {
+        @Test
+                public void testJumpToPage() throws InterruptedException {
             urlLink=driver.getCurrentUrl();
         pages.getAutoFields().getCreditRating().click();
         pages.getFields().addAction("skipToAnotherPage");

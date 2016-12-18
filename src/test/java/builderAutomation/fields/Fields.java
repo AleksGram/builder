@@ -120,12 +120,12 @@ public class Fields extends Page {
         }
     }
 
-    public void updateAnotherFieldByValue(String wichFieldUpdated) {
+    public void updateAnotherFieldByValue(String wichFieldUpdated, String valueForUpdating) {
         new Select(wichAction).selectByValue("updateField");
         actionCheckboxes.get(2).click();
         new Select(updatedFieldSelect).selectByValue(wichFieldUpdated);
         new Select(howUpdateSelect).selectByValue("value");
-        new Select(updateValueSelect).selectByValue("10");
+        new Select(updateValueSelect).selectByValue(valueForUpdating);
 
     }
     public void skipToAnotherPage()  {

@@ -17,6 +17,10 @@ public class OfferAutoFields extends Fields{
     private WebElement zipCodeInputField;
 
 
+    public WebElement getInsuranceCompany() {
+        return insuranceCompany;
+    }
+
     @FindBy (css = ".bq-field.bq-type-select.bq-name-InsuranceCompany>label>select")
     private WebElement insuranceCompany;
 
@@ -60,8 +64,15 @@ public class OfferAutoFields extends Fields{
       //  continueButton.click();
 
     }
+public void fillTheSelectField(WebElement field, Integer valueOfSelect){
+    waitUntillVisible(field);
+    new Select(field).selectByIndex(valueOfSelect);
+}
+    public void fillTheInputField(WebElement field, String inputValue){
+        waitUntillVisible(field).clear();
+        field.sendKeys(inputValue);
 
-
+    }
 
    }
 
