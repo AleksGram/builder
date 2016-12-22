@@ -8,6 +8,7 @@ import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.Capabilities;
 
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.*;
@@ -77,6 +78,10 @@ protected String urlLink;
     driver.navigate().refresh();
   }
 
+  public void clickOn(WebElement element){
+    element.click();
+  }
+
 
 
   @BeforeClass
@@ -87,14 +92,18 @@ protected String urlLink;
     driver.manage().window().maximize();
 
       loginInLxp("lxdapi", "12345");
-    prepareToTest("USA", "auto", "mfs");
+    prepareToTest("USA", "health", "mf");
       }
 
-      @AfterMethod
+  public WebElement waitUntillVisible (WebElement element){
+    return wait.until(ExpectedConditions.visibilityOf(element));
+  }
+
+      /*@AfterMethod
       public void reloadBuilder() throws InterruptedException {
         driver.get(urlLink);
         wait.until(ExpectedConditions.visibilityOf(pages.getAutoFields().getCreditRating()));
-      }
+      }*/
 
 
   @AfterSuite(alwaysRun = true)

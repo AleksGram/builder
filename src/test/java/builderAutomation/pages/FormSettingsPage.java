@@ -20,7 +20,7 @@ public class FormSettingsPage extends Page {
     @FindBy (css = "button.bq-builder-control-pages")
     private WebElement nextStepButton;
 
-    @FindBy (xpath = ".//*[@id='bq-content']//div[2]/div[2]/select")
+    @FindBy (xpath = ".//div[@id='bq-content']//div[2]/div[2]/select")
     private WebElement listOfCountries;
 
     @FindBy (xpath = ".//*[@id='bq-content']//div[3]//select")
@@ -35,9 +35,31 @@ public class FormSettingsPage extends Page {
     @FindBy(css = ".bq-popup-uri>input")
     private WebElement offerLink;
 
+    @FindBy(xpath = ".//div[@id='bq-left-sidebar']//li[4]")
+    private WebElement editActionButton;
+
+    @FindBy (css = ".bq-builder-delete")
+    private WebElement deleteActionButton;
+
+    @FindBy(xpath = ".//div[@id='bq-left-sidebar']//span[@class='bq-label']")
+    private WebElement addActionButton;
+
+    public void clickAddAction(){
+        addActionButton.click();
+    }
+
     public void saveOffer(){
         clickOn(saveOfferButton);
     }
+
+    public void goToEditActions(){
+        editActionButton.click();
+    }
+
+    public void deleteAction(){
+        deleteActionButton.click();
+    }
+
 
     public void createOffer(String country, String vertical, String type) throws InterruptedException {
         waitUntillVisible(offerNameField);

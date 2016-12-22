@@ -7,7 +7,7 @@ import org.openqa.selenium.support.FindBy;
 /**
  * Created by agra on 12/6/2016.
  */
-public class HomeFields {
+public class HomeFields extends Fields {
     @FindBy(xpath = ".//div[@id='bq-left-sidebar']//div[@title='YearsAtResidence']")
     private WebElement yearsAtResidence;
 

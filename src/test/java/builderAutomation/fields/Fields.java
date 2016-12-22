@@ -109,6 +109,8 @@ public class Fields extends Page {
         clickOn(backButton);
     }
 
+
+
     public void updateAnotherFieldVisability(String wichFieldUpdated, String howToChange) {
         new Select(wichAction).selectByValue("updateField");
         actionCheckboxes.get(2).click();
@@ -149,9 +151,9 @@ public class Fields extends Page {
         }
     }
 
-    protected Update byValue = Update.VALUE;
-    protected Update byVisability = Update.VISABILITY;
-    protected Update byValidation = Update.VALIDATION;
+    public Update byValue = Update.VALUE;
+    public Update byVisability = Update.VISABILITY;
+    public Update byValidation = Update.VALIDATION;
 
     public void updateAnotherField(Update howUpdate, String wichFieldUpdated, String howToChange) {
 
@@ -161,7 +163,7 @@ public class Fields extends Page {
                 actionCheckboxes.get(2).click();
                 new Select(updatedFieldSelect).selectByValue(wichFieldUpdated);
                 new Select(howUpdateSelect).selectByValue("value");
-                new Select(updateValueSelect).selectByValue("10");
+                new Select(updateValueSelect).selectByValue("Yes");
             case VISABILITY:
                 new Select(wichAction).selectByValue("updateField");
                 actionCheckboxes.get(2).click();
