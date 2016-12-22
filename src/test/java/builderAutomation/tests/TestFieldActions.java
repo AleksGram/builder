@@ -13,11 +13,11 @@ public class TestFieldActions extends TestNgTestBase {
       pages.getFields().getZipcode().click();
         pages.getFormSettingsPage().goToEditActions();
         pages.getFormSettingsPage().deleteAction();
-
-
-waitUntillVisible(pages.getHealthFields().getSmoker());
+        pages.getFields().backTofields();
+        waitUntillVisible( pages.getHealthFields().getSmoker());
         pages.getHealthFields().getSmoker().click();
         pages.getFields().updateAnotherField(Fields.Update.VALUE, "Hospitalized", "null");
+
     }
 
 

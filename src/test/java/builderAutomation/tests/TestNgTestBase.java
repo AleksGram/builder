@@ -66,12 +66,14 @@ protected String urlLink;
     pages.getAccountPage().clickCreateButton();
     pages.getAccountPage().saveOffer();
     pages.getFormSettingsPage().closePopup();
-    pages.getFormSettingsPage().createOffer(country, vertical, type );
     setCookie();
     pages.getFormSettingsPage().closePopup();
+    pages.getFormSettingsPage().createOffer(country, vertical, type );
+   // setCookie();
+   // pages.getFormSettingsPage().closePopup();
   }
 
-  public void setCookie(){
+  public void setCookie() throws InterruptedException {
     driver.manage().deleteAllCookies();
     Cookie cookie = new Cookie("baesid","A5FFFF68-F65E-4821-B7C9-7CDB9C330695");
     driver.manage().addCookie(cookie);
