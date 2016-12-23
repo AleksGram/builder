@@ -16,7 +16,6 @@ public class TestFieldActions extends TestNgTestBase {
         pages.getFields().backTofields();
         waitUntillVisible( pages.getHealthFields().getSmoker());
         pages.getHealthFields().getSmoker().click();
-       // pages.getFields().updateAnotherField(Fields.Update.VALUE, "Hospitalized", "null");
         pages.getFields().addNewAction("updateByValue","not use", "Hospitalized",1, "Yes");
 
     }
