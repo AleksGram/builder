@@ -131,13 +131,15 @@ public class Fields extends Page {
         new Select(updateValueSelect).selectByValue(valueForUpdating);
 
     }
-    public void skipToAnotherPage()  {
+    public void skipToAnotherPage(String pageNumber)  {
         new Select(wichAction).selectByValue("jumpOnStep");
         actionCheckboxes.get(2).click();
         jumpToPageValueField.clear();
-        jumpToPageValueField.sendKeys("3");
+        jumpToPageValueField.sendKeys(pageNumber);
+    }
 
-
+    public void skipToNextPage(){
+        new Select(wichAction).selectByValue("nextStep");
     }
 
     public enum Update {
@@ -155,12 +157,12 @@ public class Fields extends Page {
     public Update byVisability = Update.VISABILITY;
     public Update byValidation = Update.VALIDATION;
 
-    public void updateAnotherField(Update howUpdate, String wichFieldUpdated, String howToChange) {
+    public void updateAnotherField(Update howUpdate, String wichFieldUpdated, String howToChange, Integer whichValueChangedTheField) {
 
         switch (howUpdate) {
             case VALUE:
                 new Select(wichAction).selectByValue("updateField");
-                actionCheckboxes.get(2).click();
+                actionCheckboxes.get(whichValueChangedTheField).click();
                 new Select(updatedFieldSelect).selectByValue(wichFieldUpdated);
                 new Select(howUpdateSelect).selectByValue("value");
                 new Select(updateValueSelect).selectByValue("Yes");
@@ -189,13 +191,35 @@ public class Fields extends Page {
             case "updateHeader":
                 updateDynamicField();
             case "updateByValue":
-                updateAnotherField(byValue, "InsuredSince", "null");
+                updateAnotherField(byValue, "InsuredSince", "null",2);
             case "updateVisability":
-                updateAnotherField(byVisability, "InsuredSince", "hide");
+                updateAnotherField(byVisability, "InsuredSince", "hide", 2);
             case "skipToAnotherPage":
-                skipToAnotherPage();
+                skipToAnotherPage("3");
         }
         saveAction();
+    }
+    public void addNewAction(String whichAction, String pageNumber, String whichFieldUpdate, Integer whichValueChangedTheField, String value){
+        clickOn(editActionButton);
+        clickOn(addActionButton);
+        switch (whichAction){
+            case "updateHeader":
+             updateDynamicField();
+            case "updateByValue":
+                updateAnotherField(byValue, whichFieldUpdate, value, whichValueChangedTheField );
+            case "updateVisability":
+                updateAnotherField(byVisability, whichFieldUpdate, value, whichValueChangedTheField);
+            case "updateValidation":
+                updateAnotherField(byValidation,whichFieldUpdate,value, whichValueChangedTheField);
+            case "skipToNextPage":
+                skipToNextPage();
+            case "skipToAnotherPage":
+                skipToAnotherPage(pageNumber);
+
+
+        }
+        saveAction();
+
     }
 }
 
