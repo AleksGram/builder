@@ -1,6 +1,7 @@
 package builderAutomation.tests;
 
 import java.io.IOException;
+import java.util.Scanner;
 import java.util.Set;
 
 import builderAutomation.pages.Pages;
@@ -100,6 +101,9 @@ protected String urlLink;
   public WebElement waitUntillVisible (WebElement element){
     return wait.until(ExpectedConditions.visibilityOf(element));
   }
+
+
+
 
       /*@AfterMethod
       public void reloadBuilder() throws InterruptedException {

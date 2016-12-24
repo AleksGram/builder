@@ -9,17 +9,32 @@ import org.testng.annotations.Test;
  */
 @Test
 public class TestFieldActions extends TestNgTestBase {
-    public void prepareActionsForTest() {
+    public void deleteUpdateHeaderAction() {
       pages.getFields().getZipcode().click();
-        pages.getFormSettingsPage().goToEditActions();
-        pages.getFormSettingsPage().deleteAction();
-        pages.getFields().backTofields();
-        waitUntillVisible( pages.getHealthFields().getSmoker());
-        pages.getHealthFields().getSmoker().click();
-        pages.getFields().addNewAction("updateByValue","not use", "Hospitalized",1, "Yes");
-        pages.getFields().backTofields();
+      pages.getFormSettingsPage().goToEditActions();
+      pages.getFormSettingsPage().deleteAction();
+      pages.getFields().backTofields();
+    }
+    public void updateHospitalized() {
+      waitUntillVisible(pages.getHealthFields().getSmoker());
+      pages.getHealthFields().getSmoker().click();
+      pages.getFields().addNewAction("updateByValue", "not use", "Hospitalized", 1, "Yes");
+      pages.getFields().backTofields();
+    }
+
+    public void addSkipToPage(){
         pages.getHealthFields().getDeniedInsurance().click();
         pages.getFields().addNewAction("skipToAnotherPage", "2", "null", null, "null" );
+
+    }
+
+    public void addRequestsInHeader(){
+      String firstNameRequest = "<%= FirstName%>";
+      String genderRequest = "<%= Gender%>";
+      String insuranceCompanyRequest = "<%= InsuranceCompany%>";
+
+      pages.getFormSettingsPage().changePage(2);
+
 
     }
 

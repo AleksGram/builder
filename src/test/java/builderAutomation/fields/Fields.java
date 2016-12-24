@@ -101,12 +101,26 @@ public class Fields extends Page {
     @FindBy(css = ".bq-builder-item-container>input")
     private WebElement jumpToPageValueField;
 
+    @FindBy(xpath = ".//div[@class='bq-builder-event-value']/label[2]")
+    private WebElement exludeRadioButton;
+
+    @FindBy(xpath = ".//div[@class='bq-builder-event-value']/label[1]")
+    private WebElement includeRadioButton;
+
     public void saveAction() {
         clickOn(saveActionButton);
     }
 
     public void backTofields() {
         clickOn(backButton);
+    }
+
+    public void includeON(){
+        includeRadioButton.click();
+    }
+
+    public void exludeON (){
+        exludeRadioButton.click();
     }
 
 

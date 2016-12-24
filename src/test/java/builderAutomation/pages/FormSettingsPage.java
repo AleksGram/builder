@@ -6,6 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 
+import java.util.List;
+
 /**
  * Created by Грам on 23.11.2016.
  */
@@ -43,6 +45,13 @@ public class FormSettingsPage extends Page {
 
     @FindBy(xpath = ".//div[@id='bq-left-sidebar']//span[@class='bq-label']")
     private WebElement addActionButton;
+
+    @FindBy (xpath =".//li[@class='bq-disable']")
+    private List<WebElement> numbersOfThePages;
+
+    public void changePage(Integer number){
+       numbersOfThePages.get(number-2).click();
+    }
 
     public void clickAddAction() {
         addActionButton.click();
