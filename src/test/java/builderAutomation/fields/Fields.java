@@ -7,7 +7,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Created by agra on 11/30/2016.
@@ -43,6 +42,34 @@ public class Fields extends Page {
     @FindBy(xpath = ".//div[@id='bq-left-sidebar']//div[@title='ControlButton']")
     private WebElement controllButton;
 
+    public WebElement getFirstName() {
+        return firstName;
+    }
+
+    public WebElement getLastname() {
+        return lastname;
+    }
+
+    public WebElement getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public WebElement getEmailaddress() {
+        return emailaddress;
+    }
+
+    public WebElement getAddress() {
+        return address;
+    }
+
+    public WebElement getControllButton() {
+        return controllButton;
+    }
+
+    public WebElement getAddActionButton() {
+        return addActionButton;
+    }
+
     public WebElement getHeaderText() {
         return headerText;
     }
@@ -53,6 +80,10 @@ public class Fields extends Page {
     @CacheLookup
     @FindBy(xpath = ".//div[@id='bq-left-sidebar']//span[@class='bq-label']")
     private WebElement addActionButton;
+
+    public WebElement getWichAction() {
+        return wichAction;
+    }
 
     @FindBy(xpath = ".//div[@id='bq-popup-container']//select")
     private WebElement wichAction;
@@ -198,7 +229,7 @@ public class Fields extends Page {
 
     }
 
-    public void updateDynamicField() {
+    public void updateHeader() {
         new Select(wichAction).selectByValue("updateHeader");
     }
 
@@ -207,7 +238,7 @@ public class Fields extends Page {
         clickOn(addActionButton);
         switch (typeOfaction){
             case "updateHeader":
-                updateDynamicField();
+                updateHeader();
             case "updateByValue":
                 updateAnotherField(byValue, "InsuredSince", "null",2);
             case "updateVisability":
@@ -222,7 +253,7 @@ public class Fields extends Page {
         clickOn(addActionButton);
         switch (whichAction){
             case "updateHeader":
-             updateDynamicField();
+             updateHeader();
             case "updateByValue":
                 updateAnotherField(byValue, whichFieldUpdate, value, whichValueChangedTheField );
             case "updateVisability":
