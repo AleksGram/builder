@@ -34,7 +34,7 @@ public class TestFieldActions extends TestNgTestBase {
       String insuranceCompanyRequest = "<%= InsuranceCompany%>";
 
       pages.getFormSettingsPage().changePage(2);
-        System.out.println("hello frome stage");
+      pages.getFields().getHeaderText().click();
 
 
     }

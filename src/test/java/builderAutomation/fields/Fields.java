@@ -43,6 +43,10 @@ public class Fields extends Page {
     @FindBy(xpath = ".//div[@id='bq-left-sidebar']//div[@title='ControlButton']")
     private WebElement controllButton;
 
+    public WebElement getHeaderText() {
+        return headerText;
+    }
+
     @FindBy(xpath = ".//div[@id='bq-left-sidebar']//div[@title='HeaderText']")
     private WebElement headerText;
 
