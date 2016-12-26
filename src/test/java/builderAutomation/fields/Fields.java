@@ -234,6 +234,12 @@ public class Fields extends Page {
                     visabilityShowButton.click();
                 }
                 break;
+            case VALIDATION:
+                new Select(wichAction).selectByValue("updateField");
+                actionCheckboxes.get(whichValueChangedTheField).click();
+                new Select(updatedFieldSelect).selectByValue(wichFieldUpdated);
+                new Select(howUpdateSelect).selectByValue("required");
+                new Select(updateValueSelect).selectByValue(howToChange);
         }
 
     }

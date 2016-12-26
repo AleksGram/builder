@@ -49,4 +49,9 @@ public class TestFieldActions extends TestNgTestBase {
         pages.getFields().addNewAction("updateHeader", "null", "null", null, "null");
     }
 
+    public void updateFirstName(){
+        pages.getHealthFields().getHouseHoldSize().click();
+        pages.getFields().addNewAction("updateValidation","null","FirstName",7,"minLength");
+    }
+
 }

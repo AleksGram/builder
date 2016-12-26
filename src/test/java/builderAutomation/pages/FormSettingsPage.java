@@ -49,12 +49,15 @@ public class FormSettingsPage extends Page {
     @FindBy (xpath =".//li[@class='bq-disable']")
     private List<WebElement> numbersOfThePages;
 
-    public List<WebElement> getOptionBoxes() {
-        return optionBoxes;
-    }
+    @FindBy(css = ".bq-builder-error-container.errorIndex-1")
+    private List<WebElement> notEnoughtCharErrorBlock;
 
     @FindBy(xpath = ".//textarea[@class='bq-edit-text']")
     private List<WebElement> optionBoxes;
+
+    public List<WebElement> getOptionBoxes() {
+        return optionBoxes;
+    }
 
     public void changePage(Integer number){
        numbersOfThePages.get(number-2).click();
