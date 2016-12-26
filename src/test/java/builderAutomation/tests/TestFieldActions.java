@@ -37,10 +37,11 @@ public class TestFieldActions extends TestNgTestBase {
         pages.getFields().getHeaderText().click();
         pages.getFormSettingsPage().getOptionBoxes().get(0).sendKeys("and" + firstNameRequest +
                 "and" + genderRequest + "and" + insuranceCompanyRequest);
+        pages.getFields().backTofields();
 
     }
 
-    public void addUpdateHeaderToFields() throws InterruptedException {
+    public void addUpdateHeaderToFields() {
         pages.getFields().getFirstName().click();
         pages.getFields().addNewAction("updateHeader", "null", "null", null, "null");
         pages.getHealthFields().getGender().click();
@@ -49,9 +50,26 @@ public class TestFieldActions extends TestNgTestBase {
         pages.getFields().addNewAction("updateHeader", "null", "null", null, "null");
     }
 
-    public void updateFirstName(){
+    public void updateFirstName() {
+        String errorMessage = "Please enter at least 4 characters.";
         pages.getHealthFields().getHouseHoldSize().click();
-        pages.getFields().addNewAction("updateValidation","null","FirstName",7,"minLength");
+        pages.getFields().addNewAction("updateValidation", "null", "FirstName", 7, "minLength");
     }
 
+    public void removeNextStepFromControlButton() {
+        pages.getFields().getControllButton().click();
+        pages.getFormSettingsPage().goToEditActions();
+        pages.getFormSettingsPage().deleteAction();
+    }
+
+    @Test
+    public void test() {
+        deleteUpdateHeaderAction();
+      //  updateHospitalized();
+        addSkipToPage();
+        addRequestsInHeader();
+        addUpdateHeaderToFields();
+        updateFirstName();
+        removeNextStepFromControlButton();
+    }
 }

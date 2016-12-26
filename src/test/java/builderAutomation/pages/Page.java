@@ -26,6 +26,9 @@ public abstract class Page {
   public List<WebElement> waitUntillVisible(List<WebElement> list){
     return wait.until(ExpectedConditions.visibilityOfAllElements(list));
   }
+  public WebElement waitUntillClikable (WebElement element){
+    return wait.until(ExpectedConditions.elementToBeClickable(element));
+  }
 
   public void clickOn(WebElement element){
     waitUntillVisible(element);

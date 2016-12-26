@@ -142,7 +142,11 @@ public class Fields extends Page {
     @FindBy(xpath = ".//div[@class='bq-builder-event-value']/label[1]")
     private WebElement includeRadioButton;
 
+    @FindBy(css = ".bq-builder-item-container>input")
+    private List<WebElement> validationCharactersFields;
+
     public void saveAction() {
+       waitUntillClikable(saveActionButton);
         clickOn(saveActionButton);
     }
 
@@ -167,11 +171,11 @@ public class Fields extends Page {
     public void addAction(String typeOfaction)  {
         clickOn(editActionButton);
         clickOn(addActionButton);
-        switch (typeOfaction){
+        switch (typeOfaction) {
             case "updateHeader":
                 updateHeader();
             case "updateByValue":
-                updateAnotherField(byValue, "InsuredSince", "null",2);
+                updateAnotherField(byValue, "InsuredSince", "null", 2);
             case "updateVisability":
                 updateAnotherField(byVisability, "InsuredSince", "hide", 2);
             case "skipToAnotherPage":
@@ -221,7 +225,7 @@ public class Fields extends Page {
                 actionCheckboxes.get(whichValueChangedTheField).click();
                 new Select(updatedFieldSelect).selectByValue(wichFieldUpdated);
                 new Select(howUpdateSelect).selectByValue("value");
-                new Select(updateValueSelect).selectByValue("Yes");
+                new Select(updateValueSelect).selectByValue(howToChange);
                 break;
             case VISABILITY:
                 new Select(wichAction).selectByValue("updateField");
@@ -240,6 +244,11 @@ public class Fields extends Page {
                 new Select(updatedFieldSelect).selectByValue(wichFieldUpdated);
                 new Select(howUpdateSelect).selectByValue("required");
                 new Select(updateValueSelect).selectByValue(howToChange);
+                validationCharactersFields.get(0).clear();
+                validationCharactersFields.get(0).sendKeys("Please enter at least 4 characters.");
+                validationCharactersFields.get(1).clear();
+                validationCharactersFields.get(1).sendKeys("4");
+                break;
         }
 
     }
@@ -251,7 +260,7 @@ public class Fields extends Page {
     }
 
 
-    public void addNewAction(String whichAction, String pageNumber, String whichFieldUpdate, Integer whichValueChangedTheField, String value){
+    public void addNewAction(String whichAction, String pageNumber, String whichFieldUpdate, Integer whichValueChangedTheField, String howToChange){
         clickOn(editActionButton);
         clickOn(addActionButton);
         switch (whichAction){
@@ -259,13 +268,13 @@ public class Fields extends Page {
              updateDynamicField();
              break;
             case "updateByValue":
-                updateAnotherField(byValue, whichFieldUpdate, value, whichValueChangedTheField );
+                updateAnotherField(byValue, whichFieldUpdate, howToChange, whichValueChangedTheField );
                 break;
-            case "updateVisability":
-                updateAnotherField(byVisability, whichFieldUpdate, value, whichValueChangedTheField);
+            case "updateVisibility":
+                updateAnotherField(byVisability, whichFieldUpdate, howToChange, whichValueChangedTheField);
                 break;
             case "updateValidation":
-                updateAnotherField(byValidation,whichFieldUpdate,value, whichValueChangedTheField);
+                updateAnotherField(byValidation,whichFieldUpdate,howToChange, whichValueChangedTheField);
                 break;
             case "skipToNextPage":
                 skipToNextPage();

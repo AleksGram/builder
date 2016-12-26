@@ -75,8 +75,13 @@ public class FormSettingsPage extends Page {
         editActionButton.click();
     }
 
+    @FindBy(xpath = ".//div[@id='bq-left-sidebar']//ol/li[1]")
+    public WebElement backButton;
+
     public void deleteAction() {
         deleteActionButton.click();
+        backButton.click();
+
     }
 
 
