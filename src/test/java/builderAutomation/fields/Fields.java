@@ -159,27 +159,34 @@ public class Fields extends Page {
     }
 
 
-
-    public void updateAnotherFieldVisability(String wichFieldUpdated, String howToChange) {
-        new Select(wichAction).selectByValue("updateField");
-        actionCheckboxes.get(2).click();
-        new Select(updatedFieldSelect).selectByValue(wichFieldUpdated);
-        new Select(howUpdateSelect).selectByValue("hidden");
-        if (howToChange == "hide") {
-            visabilityHideButton.click();
-        } else {
-            visabilityShowButton.click();
+    public void updateHeader() {
+        clickOn(editActionButton);
+        clickOn(addActionButton);
+        new Select(wichAction).selectByValue("updateHeader");
+    }
+    public void addAction(String typeOfaction)  {
+        clickOn(editActionButton);
+        clickOn(addActionButton);
+        switch (typeOfaction){
+            case "updateHeader":
+                updateHeader();
+            case "updateByValue":
+                updateAnotherField(byValue, "InsuredSince", "null",2);
+            case "updateVisability":
+                updateAnotherField(byVisability, "InsuredSince", "hide", 2);
+            case "skipToAnotherPage":
+                skipToAnotherPage("3");
         }
+        saveAction();
     }
 
-    public void updateAnotherFieldByValue(String wichFieldUpdated, String valueForUpdating) {
-        new Select(wichAction).selectByValue("updateField");
-        actionCheckboxes.get(2).click();
-        new Select(updatedFieldSelect).selectByValue(wichFieldUpdated);
-        new Select(howUpdateSelect).selectByValue("value");
-        new Select(updateValueSelect).selectByValue(valueForUpdating);
 
-    }
+
+
+
+
+
+
     public void skipToAnotherPage(String pageNumber)  {
         new Select(wichAction).selectByValue("jumpOnStep");
         actionCheckboxes.get(2).click();
@@ -215,60 +222,54 @@ public class Fields extends Page {
                 new Select(updatedFieldSelect).selectByValue(wichFieldUpdated);
                 new Select(howUpdateSelect).selectByValue("value");
                 new Select(updateValueSelect).selectByValue("Yes");
+                break;
             case VISABILITY:
                 new Select(wichAction).selectByValue("updateField");
-                actionCheckboxes.get(2).click();
+                actionCheckboxes.get(whichValueChangedTheField).click();
                 new Select(updatedFieldSelect).selectByValue(wichFieldUpdated);
-                new Select(howUpdateSelect).selectByValue("hidden");
+                new Select(howUpdateSelect).selectByValue(howToChange);
                 if (howToChange == "hide") {
                     visabilityHideButton.click();
                 } else {
                     visabilityShowButton.click();
                 }
+                break;
         }
 
     }
 
-    public void updateHeader() {
+
+
+    public void updateDynamicField() {
         new Select(wichAction).selectByValue("updateHeader");
     }
 
-    public void addAction(String typeOfaction)  {
-        clickOn(editActionButton);
-        clickOn(addActionButton);
-        switch (typeOfaction){
-            case "updateHeader":
-                updateHeader();
-            case "updateByValue":
-                updateAnotherField(byValue, "InsuredSince", "null",2);
-            case "updateVisability":
-                updateAnotherField(byVisability, "InsuredSince", "hide", 2);
-            case "skipToAnotherPage":
-                skipToAnotherPage("3");
-        }
-        saveAction();
-    }
+
     public void addNewAction(String whichAction, String pageNumber, String whichFieldUpdate, Integer whichValueChangedTheField, String value){
         clickOn(editActionButton);
         clickOn(addActionButton);
         switch (whichAction){
             case "updateHeader":
-             updateHeader();
+             updateDynamicField();
+             break;
             case "updateByValue":
                 updateAnotherField(byValue, whichFieldUpdate, value, whichValueChangedTheField );
+                break;
             case "updateVisability":
                 updateAnotherField(byVisability, whichFieldUpdate, value, whichValueChangedTheField);
+                break;
             case "updateValidation":
                 updateAnotherField(byValidation,whichFieldUpdate,value, whichValueChangedTheField);
+                break;
             case "skipToNextPage":
                 skipToNextPage();
+                break;
             case "skipToAnotherPage":
                 skipToAnotherPage(pageNumber);
-
-
+                break;
         }
         saveAction();
-
+        backTofields();
     }
 }
 

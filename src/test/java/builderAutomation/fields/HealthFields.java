@@ -14,6 +14,10 @@ public class HealthFields extends Fields {
     @FindBy(xpath = ".//div[@id='bq-left-sidebar']//div[@title='Conditions']")
     private WebElement conditions ;
 
+
+    @FindBy(xpath = ".//div[@id='bq-left-sidebar']//div[@title='Gender']")
+    private WebElement gender ;
+
     @FindBy(xpath = ".//div[@id='bq-left-sidebar']//div[@title='Pregnant']")
     private WebElement pregnant;
 
@@ -46,6 +50,11 @@ public class HealthFields extends Fields {
 
     @FindBy(xpath = ".//div[@id='bq-left-sidebar']//div[@title='CoverageType']")
     private WebElement coverageType;
+
+
+    public WebElement getGender() {
+        return gender;
+    }
 
     public WebElement getDeniedInsurance() {
         return deniedInsurance;

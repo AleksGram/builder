@@ -15,21 +15,17 @@ public class TestFieldActions extends TestNgTestBase {
         pages.getFields().getZipcode().click();
         pages.getFormSettingsPage().goToEditActions();
         pages.getFormSettingsPage().deleteAction();
-        pages.getFields().backTofields();
     }
 
     public void updateHospitalized() {
         waitUntillVisible(pages.getHealthFields().getSmoker());
         pages.getHealthFields().getSmoker().click();
         pages.getFields().addNewAction("updateByValue", "not use", "Hospitalized", 1, "Yes");
-        pages.getFields().backTofields();
     }
 
     public void addSkipToPage() {
         pages.getHealthFields().getDeniedInsurance().click();
         pages.getFields().addNewAction("skipToAnotherPage", "2", "null", null, "null");
-        pages.getFields().backTofields();
-
     }
 
     public void addRequestsInHeader() {
@@ -41,14 +37,16 @@ public class TestFieldActions extends TestNgTestBase {
         pages.getFields().getHeaderText().click();
         pages.getFormSettingsPage().getOptionBoxes().get(0).sendKeys("and" + firstNameRequest +
                 "and" + genderRequest + "and" + insuranceCompanyRequest);
-        pages.getFields().backTofields();
+
     }
 
-    public void addUpdateHeaderToFirstName() {
+    public void addUpdateHeaderToFields() throws InterruptedException {
         pages.getFields().getFirstName().click();
-        pages.getFields().addNewAction("updateHeader","null", "null", null, "null" );
-
+        pages.getFields().addNewAction("updateHeader", "null", "null", null, "null");
+        pages.getHealthFields().getGender().click();
+        pages.getFields().addNewAction("updateHeader", "null", "null", null, "null");
+        pages.getHealthFields().getInsuranceCompany().click();
+        pages.getFields().addNewAction("updateHeader", "null", "null", null, "null");
     }
-
 
 }
