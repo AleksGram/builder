@@ -1,9 +1,6 @@
 package builderAutomation.pages;
 
-import builderAutomation.fields.AutoFields;
-import builderAutomation.fields.Fields;
-import builderAutomation.fields.HealthFields;
-import builderAutomation.fields.HomeFields;
+import builderAutomation.fields.*;
 import builderAutomation.pages.auto_mf_pages.OfferAutoFields;
 
 /**
@@ -24,4 +21,5 @@ public class Pages  {
     public static AutoFields getAutoFields(){return new AutoFields();}
     public static HomeFields getHomeFields(){return new HomeFields();}
     public static HealthFields getHealthFields() {return new HealthFields();}
+    public static HealthOfferFields getHealthOfferFields(){return new HealthOfferFields();}
 }

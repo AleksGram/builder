@@ -1,8 +1,10 @@
 package builderAutomation.tests;
 
 import builderAutomation.fields.Fields;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -75,5 +77,24 @@ public class TestFieldActions extends TestNgTestBase {
         removeNextStepFromControlButton();
         pages.getFormSettingsPage().saveOffer();
         pages.getFormSettingsPage().openOfferInNewTab();
+
+        waitUntillVisible(pages.getHealthOfferFields().getOfferZipCode());
+        pages.getHealthOfferFields().getOfferZipCode().sendKeys("0000");
+       // pages.getHealthOfferFields().choosingConditions("AidsHiv");
+        pages.getHealthOfferFields().clickOnRadiobuttons(pages.getHealthOfferFields().getSmoker(), 1);
+        Assert.assertTrue(pages.getHealthOfferFields().getZipCodeErrorMessage().isDisplayed());
+        pages.getHealthOfferFields().getOfferZipCodeError().sendKeys("90210");
+        pages.getHealthOfferFields().choosingConditions("AidsHiv");
+        pages.getHealthOfferFields().clickOnRadiobuttons(pages.getHealthOfferFields().getSmoker(), 0);
+        Assert.assertTrue(pages.getHealthOfferFields().getZipCodeErrorMessage().isEnabled());
+        Assert.assertTrue(pages.getHealthOfferFields().getHospitalized().get(0).getAttribute("class").contains("bq-active"));
+        pages.getHealthOfferFields().clickOnRadiobuttons(pages.getHealthOfferFields().getDenideInsurance(),0);
+        Thread.sleep(7000);
+        Assert.assertTrue(getCurrentUrl().contains("#page/2"));
+
+        Thread.sleep(5000);
     }
+
+
 }
+

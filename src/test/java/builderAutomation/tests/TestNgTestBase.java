@@ -101,6 +101,11 @@ protected String urlLink;
   public WebElement waitUntillVisible (WebElement element){
     return wait.until(ExpectedConditions.visibilityOf(element));
   }
+  public String getCurrentUrl(){
+    String url;
+    url = driver.getCurrentUrl();
+    return url;
+  }
 
 
 

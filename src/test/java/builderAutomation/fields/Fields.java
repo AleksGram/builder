@@ -42,37 +42,6 @@ public class Fields extends Page {
     @FindBy(xpath = ".//div[@id='bq-left-sidebar']//div[@title='ControlButton']")
     private WebElement controllButton;
 
-    public WebElement getFirstName() {
-        return firstName;
-    }
-
-    public WebElement getLastname() {
-        return lastname;
-    }
-
-    public WebElement getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public WebElement getEmailaddress() {
-        return emailaddress;
-    }
-
-    public WebElement getAddress() {
-        return address;
-    }
-
-    public WebElement getControllButton() {
-        return controllButton;
-    }
-
-    public WebElement getAddActionButton() {
-        return addActionButton;
-    }
-
-    public WebElement getHeaderText() {
-        return headerText;
-    }
 
     @FindBy(xpath = ".//div[@id='bq-left-sidebar']//div[@title='HeaderText']")
     private WebElement headerText;
@@ -144,6 +113,39 @@ public class Fields extends Page {
 
     @FindBy(css = ".bq-builder-item-container>input")
     private List<WebElement> validationCharactersFields;
+
+    public WebElement getFirstName() {
+        return firstName;
+    }
+
+    public WebElement getLastname() {
+        return lastname;
+    }
+
+    public WebElement getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public WebElement getEmailaddress() {
+        return emailaddress;
+    }
+
+    public WebElement getAddress() {
+        return address;
+    }
+
+    public WebElement getControllButton() {
+        return controllButton;
+    }
+
+    public WebElement getAddActionButton() {
+        return addActionButton;
+    }
+
+    public WebElement getHeaderText() {
+        return headerText;
+    }
+
 
     public void saveAction() {
        waitUntillClikable(saveActionButton);
