@@ -60,16 +60,20 @@ public class TestFieldActions extends TestNgTestBase {
         pages.getFields().getControllButton().click();
         pages.getFormSettingsPage().goToEditActions();
         pages.getFormSettingsPage().deleteAction();
+        pages.getFormSettingsPage().changePage(1);
+
     }
 
     @Test
-    public void test() {
+    public void test() throws InterruptedException {
         deleteUpdateHeaderAction();
-      //  updateHospitalized();
+        updateHospitalized();
         addSkipToPage();
         addRequestsInHeader();
         addUpdateHeaderToFields();
         updateFirstName();
         removeNextStepFromControlButton();
+        pages.getFormSettingsPage().saveOffer();
+        pages.getFormSettingsPage().openOfferInNewTab();
     }
 }

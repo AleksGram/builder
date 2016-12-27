@@ -46,7 +46,7 @@ public class FormSettingsPage extends Page {
     @FindBy(xpath = ".//div[@id='bq-left-sidebar']//span[@class='bq-label']")
     private WebElement addActionButton;
 
-    @FindBy (xpath =".//li[@class='bq-disable']")
+    @FindBy (xpath =".//ol[@class='bq-steps']//li")
     private List<WebElement> numbersOfThePages;
 
     @FindBy(css = ".bq-builder-error-container.errorIndex-1")
@@ -59,8 +59,13 @@ public class FormSettingsPage extends Page {
         return optionBoxes;
     }
 
+    @FindBy(xpath = ".//div[@id='bq-left-sidebar']//ol/li[1]")
+    public WebElement backButton;
+
+
+
     public void changePage(Integer number){
-       numbersOfThePages.get(number-2).click();
+       numbersOfThePages.get(number-1).click();
     }
 
     public void clickAddAction() {
@@ -75,8 +80,7 @@ public class FormSettingsPage extends Page {
         editActionButton.click();
     }
 
-    @FindBy(xpath = ".//div[@id='bq-left-sidebar']//ol/li[1]")
-    public WebElement backButton;
+
 
     public void deleteAction() {
         deleteActionButton.click();
