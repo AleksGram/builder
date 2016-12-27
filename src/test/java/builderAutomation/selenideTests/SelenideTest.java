@@ -13,7 +13,7 @@ import static com.codeborne.selenide.Selenide.open;
 public class SelenideTest {
     @Test
     public void openBuilder() {
-        System.setProperty("webdriver.chrome.driver", "src\\test\\resources\\server\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "src\\setConditionsInBuilder\\resources\\server\\chromedriver.exe");
        System.setProperty("selenide.browser", "Chrome");
         open("http://lxpui3.stagingrevi.com/offers/settings/offerviews");
         $(By.name("UserName")).setValue("lxdapi");

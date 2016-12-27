@@ -6,6 +6,7 @@ import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 
+import java.util.InputMismatchException;
 import java.util.List;
 
 /**
@@ -114,6 +115,12 @@ public class Fields extends Page {
     @FindBy(css = ".bq-builder-item-container>input")
     private List<WebElement> validationCharactersFields;
 
+    @FindBy(xpath = ".//div[@class='bq-builder-event-value']//input[@value='0']")
+    private List<WebElement> includeOn;
+
+    @FindBy(xpath = ".//div[@class='bq-builder-event-value']//input[@value='1']")
+    private List<WebElement> exludeOn;
+
     public WebElement getFirstName() {
         return firstName;
     }
@@ -146,22 +153,22 @@ public class Fields extends Page {
         return headerText;
     }
 
-
-    public void saveAction() {
-       waitUntillClikable(saveActionButton);
-        clickOn(saveActionButton);
-    }
-
     public void backTofields() {
         clickOn(backButton);
     }
 
-    public void includeON(){
-        includeRadioButton.click();
+
+    public void setIncludeOn(Integer actionLevel){
+  includeOn.get(actionLevel).click();
     }
 
-    public void exludeON (){
-        exludeRadioButton.click();
+    public void setExcludeOn(Integer actionLevel){
+        exludeOn.get(actionLevel).click();
+    }
+
+    public void saveAction() {
+        waitUntillClikable(saveActionButton);
+        clickOn(saveActionButton);
     }
 
 
@@ -224,6 +231,7 @@ public class Fields extends Page {
         switch (howUpdate) {
             case VALUE:
                 new Select(wichAction).selectByValue("updateField");
+
                 actionCheckboxes.get(whichValueChangedTheField).click();
                 new Select(updatedFieldSelect).selectByValue(wichFieldUpdated);
                 new Select(howUpdateSelect).selectByValue("value");
@@ -254,6 +262,43 @@ public class Fields extends Page {
         }
 
     }
+
+    public void updateAnotherFieldAddCondition(Update howUpdate, String wichFieldUpdated, String howToChange, Integer whichValueChangedTheField) {
+
+        switch (howUpdate) {
+            case VALUE:
+                new Select(wichAction).selectByValue("updateField");
+                actionCheckboxes.get(whichValueChangedTheField).click();
+                new Select(updatedFieldSelect).selectByValue(wichFieldUpdated);
+                new Select(howUpdateSelect).selectByValue("value");
+                new Select(updateValueSelect).selectByValue(howToChange);
+                break;
+            case VISABILITY:
+                new Select(wichAction).selectByValue("updateField");
+                actionCheckboxes.get(whichValueChangedTheField).click();
+                new Select(updatedFieldSelect).selectByValue(wichFieldUpdated);
+                new Select(howUpdateSelect).selectByValue(howToChange);
+                if (howToChange == "hide") {
+                    visabilityHideButton.click();
+                } else {
+                    visabilityShowButton.click();
+                }
+                break;
+            case VALIDATION:
+                new Select(wichAction).selectByValue("updateField");
+                actionCheckboxes.get(whichValueChangedTheField).click();
+                new Select(updatedFieldSelect).selectByValue(wichFieldUpdated);
+                new Select(howUpdateSelect).selectByValue("required");
+                new Select(updateValueSelect).selectByValue(howToChange);
+                validationCharactersFields.get(0).clear();
+                validationCharactersFields.get(0).sendKeys("Please enter at least 4 characters.");
+                validationCharactersFields.get(1).clear();
+                validationCharactersFields.get(1).sendKeys("4");
+                break;
+        }
+
+    }
+
 
 
 

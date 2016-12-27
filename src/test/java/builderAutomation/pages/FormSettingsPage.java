@@ -91,7 +91,7 @@ public class FormSettingsPage extends Page {
 
     public void createOffer(String country, String vertical, String type) throws InterruptedException {
         waitUntillVisible(offerNameField);
-        offerNameField.sendKeys("test");
+        offerNameField.sendKeys("setConditionsInBuilder");
 
         new Select(listOfCountries).selectByValue(country);
         new Select(campaignVertical).selectByValue(vertical);

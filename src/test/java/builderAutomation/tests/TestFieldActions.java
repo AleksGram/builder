@@ -11,8 +11,9 @@ import org.testng.annotations.Test;
 /**
  * Created by Грам on 18.12.2016.
  */
-@Test
+
 public class TestFieldActions extends TestNgTestBase {
+
     public void deleteUpdateHeaderAction() {
         pages.getFields().getZipcode().click();
         pages.getFormSettingsPage().goToEditActions();
@@ -66,8 +67,8 @@ public class TestFieldActions extends TestNgTestBase {
 
     }
 
-    @Test
-    public void test() throws InterruptedException {
+
+    public void setConditionsInBuilder() throws InterruptedException {
         deleteUpdateHeaderAction();
         updateHospitalized();
         addSkipToPage();
@@ -77,7 +78,10 @@ public class TestFieldActions extends TestNgTestBase {
         removeNextStepFromControlButton();
         pages.getFormSettingsPage().saveOffer();
         pages.getFormSettingsPage().openOfferInNewTab();
-
+    }
+@Test
+        public void test() throws InterruptedException {
+        setConditionsInBuilder();
         waitUntillVisible(pages.getHealthOfferFields().getOfferZipCode());
         pages.getHealthOfferFields().getOfferZipCode().sendKeys("0000");
        // pages.getHealthOfferFields().choosingConditions("AidsHiv");
@@ -94,7 +98,5 @@ public class TestFieldActions extends TestNgTestBase {
 
         Thread.sleep(5000);
     }
-
-
 }
 
