@@ -34,6 +34,7 @@ public class TestOffer extends TestNgTestBase {
     }
 
     @Test
+    //hello from idea
     public void testJumpToPage() throws InterruptedException {
         urlLink = driver.getCurrentUrl();
         pages.getAutoFields().getCreditRating().click();
